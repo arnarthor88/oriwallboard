@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from dotenv import get_key, set_key
 
 
@@ -37,6 +37,13 @@ def get_assigned():
         set_key(dotenv_path=env, key_to_set='TOTALWAITING', value_to_set=str(totalWaiting))
     print('TotalWaiting: {0}'.format(get_key(dotenv_path=env, key_to_get='TOTALWAITING')))
     return ("", 200, None)
+
+
+@app.route('/wallboard')
+def hello():
+    return render_template('index.html')
+    #return f'{get_key(dotenv_path=env, key_to_get="TOTALWAITING")}'
+
 
 
 if __name__ == '__main__':
